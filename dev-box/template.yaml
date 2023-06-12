@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: developer-box-template
+  name: Developer-box-template
   title: DevBox Template
   description: Simple Template to create a Developer Box
   tags:
