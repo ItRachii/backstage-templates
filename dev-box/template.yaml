@@ -5,7 +5,6 @@ metadata:
   title: DevBox Template
   description: Simple Template to create a Developer Box
   tags:
-    - Yaml
     - DevBox
 spec:
   owner: web@example.com
