@@ -5,7 +5,7 @@ metadata:
   title: DevBox Template
   description: Simple Template to create a Developer Box
   tags:
-    - CloudFormation
+    - cloudformation
 spec:
   owner: web@example.com
   type: website
