@@ -121,4 +121,4 @@ spec:
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: https://github.com/ItRachii/aws-apache-web-app
