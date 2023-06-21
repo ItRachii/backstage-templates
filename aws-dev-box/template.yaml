@@ -5,7 +5,7 @@ metadata:
   title: Apace Terraform Template
   description: Simple apache web app hosted on aws EC2 instance
   tags:
-    - AWS
+    - aws
     - webapp
 spec:
   owner: ey
