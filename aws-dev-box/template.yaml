@@ -1,11 +1,12 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: aws-developer-box-template
+  name: aws-apache-web-app-template
   title: DevBox Template
-  description: Simple aws template to create a Developer Box
+  description: Simple apache web app hosted on aws EC2 instance
   tags:
-    - cloudformation
+    - AWS
+    - webapp
 spec:
   owner: ey
   type: service
