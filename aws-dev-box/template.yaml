@@ -1,11 +1,12 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: aws-developer-box-template
-  title: DevBox Template
-  description: Simple aws template to create a Developer Box
+  name: apache-ec2-web-app-template
+  title: Apace Terraform Template
+  description: Simple apache web app hosted on aws EC2 instance
   tags:
-    - cloudformation
+    - AWS
+    - webapp
 spec:
   owner: ey
   type: service
@@ -61,30 +62,33 @@ spec:
           title: Subnet CIDR
           type: string
           description: Subnet's IPv4 CIDR
-    - title: EC2 Instance Details
+    - title: EC2 Instance Type
       required:
         - instance_type
-        - instance_key
       properties:
         instance_type:
           title: EC2 Instance Type
           type: string
-          description:
-        instance_key:
-          title: instance_key
-          type: string
-          description:
-    - title: Choose a location
+          description: Type of EC2 instance
+    - title: EC2 Instance Key
       required:
-        - repoUrl
+        - instance_key
       properties:
-        repoUrl:
-          title: Repository Location
+        instance_key:
+          title: Instance Key
           type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+          description: Key pair 
+    # - title: Choose a location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Repository Location
+    #       type: string
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -96,7 +100,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          # destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
           region: ${{ parameters.region }}
           profile_name: ${{ parameters.profile_name }}
@@ -105,16 +109,22 @@ spec:
           instance_type: ${{ paramters.instance_type }}
           instance_key: ${{ parameters.instance_key }}
 
-    - id: publish
-      name: Publish
-      action: publish:github
+    # - id: publish
+    #   name: Publish
+    #   action: publish:github
+    #   input:
+    #     allowedHosts:
+    #       - github.com
+    #     description: This is ${{ parameters.component_id }}
+    #     repoUrl: ${{ parameters.repoUrl }}
+    - id: register
+      name: Register
+      action: catalog:register
       input:
-        allowedHosts:
-          - github.com
-        description: This is ${{ parameters.component_id }}
-        repoUrl: ${{ parameters.repoUrl }}
-
+        repoContentsUrl: https://github.com/ItRachii/aws-apache-web-app
+        catalogInfoPath: "/catalog-info.yaml"
+        
   output:
     links:
       - title: Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: https://github.com/ItRachii/aws-apache-web-app
