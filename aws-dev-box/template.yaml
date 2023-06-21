@@ -1,8 +1,8 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: aws-apache-web-app-template
-  title: DevBox Template
+  name: apache-ec2-web-app-template
+  title: Apace Terraform Template
   description: Simple apache web app hosted on aws EC2 instance
   tags:
     - AWS
@@ -117,7 +117,13 @@ spec:
     #       - github.com
     #     description: This is ${{ parameters.component_id }}
     #     repoUrl: ${{ parameters.repoUrl }}
-
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: https://github.com/ItRachii/aws-apache-web-app
+        catalogInfoPath: "/catalog-info.yaml"
+        
   output:
     links:
       - title: Repository
