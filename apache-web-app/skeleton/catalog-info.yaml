@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{values.component_id | dump}}
+  {%- if values.description %}
+  description: ${{values.description | dump}}
+  {%- endif %}
+  labels:
+    system: web-apps
+  links:
+    - url: https://github.com/ItRachii/aws-apache-web-app
+      title: ${{values.component_id | dump}}
+      icon: code
+  tags:
+    - java
+  annotations:
+    jenkins.io/github-folder: 'apache-web-app/aws-terrform-job'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: 'ItRachii/aws-apache-web-app'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ${{values.owner | dump}}
+  ownerEmail: ${{values.ownerEmail}}

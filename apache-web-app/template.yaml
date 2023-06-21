@@ -1,0 +1,129 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: apache--web-app-template
+  title: Apache Terraform Template
+  description: Simple apache web app hosted on aws EC2 instance
+  tags:
+    - webapp
+spec:
+  owner: ey
+  type: service
+  parameters:
+    - title: Basic Information
+      required:
+        - component_id
+        - owner
+      properties:
+        component_id:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:field: EntityNamePicker
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this website is for.
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+    - title: Configure AWS Provider
+      required:
+        - region
+        - profile_name
+      properties:
+        region:
+          title: Region
+          type: string
+          description: AWS Region
+        profile_name:
+          title: ProfileName
+          type: string
+          description: AWS IAM user name
+    - title: VPC Details
+      required:
+        - vpc_cidr
+      properties:
+        vpc_cidr:
+          title: VPC CIDR
+          type: string
+          description: VPC's IPv4 CIDR
+    - title: Subnet Details
+      required:
+        - public_subnet_cidr
+      properties:
+        public_subnet_cidr:
+          title: Subnet CIDR
+          type: string
+          description: Subnet's IPv4 CIDR
+    - title: EC2 Instance Type
+      required:
+        - instance_type
+      properties:
+        instance_type:
+          title: EC2 Instance Type
+          type: string
+          description: Type of EC2 instance
+    - title: EC2 Instance Key
+      required:
+        - instance_key
+      properties:
+        instance_key:
+          title: Instance Key
+          type: string
+          description: Key pair 
+    # - title: Choose a location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Repository Location
+    #       type: string
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
+  steps:
+    - id: template
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        copyWithoutRender:
+          - .github/workflows/*
+        values:
+          component_id: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
+          # destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          owner: ${{ parameters.owner }}
+          region: ${{ parameters.region }}
+          profile_name: ${{ parameters.profile_name }}
+          vpc_cidr: ${{ parameters.vpc_cidr }}
+          public_subnet_cidr: ${{ parameters.public_subnet_cidr }}
+          instance_type: ${{ paramters.instance_type }}
+          instance_key: ${{ parameters.instance_key }}
+
+    # - id: publish
+    #   name: Publish
+    #   action: publish:github
+    #   input:
+    #     allowedHosts:
+    #       - github.com
+    #     description: This is ${{ parameters.component_id }}
+    #     repoUrl: ${{ parameters.repoUrl }}
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: https://github.com/ItRachii/aws-apache-web-app
+        catalogInfoPath: "/catalog-info.yaml"
+        
+  output:
+    links:
+      - title: Repository
+        url: https://github.com/ItRachii/aws-apache-web-app
