@@ -78,17 +78,17 @@ spec:
           title: Instance Key
           type: string
           description: Key pair 
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
+    # - title: Choose a location
+    #   required:
+    #     - repoUrl
+    #   properties:
+    #     repoUrl:
+    #       title: Repository Location
+    #       type: string
+    #       ui:field: RepoUrlPicker
+    #       ui:options:
+    #         allowedHosts:
+    #           - github.com
   steps:
     - id: template
       name: Fetch Skeleton + Template
@@ -100,7 +100,7 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+          # destination: ${{ parameters.repoUrl | parseRepoUrl }}
           owner: ${{ parameters.owner }}
           region: ${{ parameters.region }}
           profile_name: ${{ parameters.profile_name }}
@@ -109,14 +109,14 @@ spec:
           instance_type: ${{ paramters.instance_type }}
           instance_key: ${{ parameters.instance_key }}
 
-    - id: publish
-      name: Publish
-      action: publish:github
-      input:
-        allowedHosts:
-          - github.com
-        description: This is ${{ parameters.component_id }}
-        repoUrl: ${{ parameters.repoUrl }}
+    # - id: publish
+    #   name: Publish
+    #   action: publish:github
+    #   input:
+    #     allowedHosts:
+    #       - github.com
+    #     description: This is ${{ parameters.component_id }}
+    #     repoUrl: ${{ parameters.repoUrl }}
 
   output:
     links:
