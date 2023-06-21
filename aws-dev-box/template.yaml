@@ -61,15 +61,18 @@ spec:
           title: Subnet CIDR
           type: string
           description: Subnet's IPv4 CIDR
-    - title: EC2 Instance Details
+    - title: EC2 Instance Type
       required:
         - instance_type
-        - instance_key
       properties:
         instance_type:
           title: EC2 Instance Type
           type: string
           description: Type of EC2 instance
+    - title: EC2 Instance Key
+      required:
+        - instance_key
+      properties:
         instance_key:
           title: Instance Key
           type: string
