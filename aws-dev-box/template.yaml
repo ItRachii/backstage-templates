@@ -71,7 +71,7 @@ spec:
           type: string
           description:
         instance_key:
-          title: 
+          title: instance_key
           type: string
           description:
     - title: Choose a location
