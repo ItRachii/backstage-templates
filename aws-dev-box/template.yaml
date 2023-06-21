@@ -69,11 +69,11 @@ spec:
         instance_type:
           title: EC2 Instance Type
           type: string
-          description:
+          description: Type of EC2 instance
         instance_key:
-          title: instance_key
+          title: Instance Key
           type: string
-          description:
+          description: Key pair 
     - title: Choose a location
       required:
         - repoUrl
