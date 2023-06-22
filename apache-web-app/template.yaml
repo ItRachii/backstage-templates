@@ -1,7 +1,7 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: apache--web-app-template
+  name: apache-web-app-template
   title: Apache Terraform Template
   description: Simple apache web app hosted on aws EC2 instance
   tags:
