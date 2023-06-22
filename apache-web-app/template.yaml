@@ -90,7 +90,7 @@ spec:
     #           - github.com
   steps:
     - id: template
-      name: Fetch Skeleton + Template
+      name: Fetching and Publishing
       action: fetch:template
       input:
         url: ./skeleton
