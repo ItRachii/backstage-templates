@@ -7,7 +7,7 @@ metadata:
   tags:
     - cloudformation
 spec:
-  owner: web@example.com
+  owner: ey
   type: website
   parameters:
     - title: Provide some simple information
