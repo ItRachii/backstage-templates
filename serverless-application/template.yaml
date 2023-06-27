@@ -7,7 +7,7 @@ metadata:
   tags:
     - python
 spec:
-  owner: web@example.com
+  owner: ey
   type: service
   parameters:
     - title: Provide some simple information
